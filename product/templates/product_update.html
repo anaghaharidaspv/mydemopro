@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+
+        .form-control {
+            font-size: 16px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin-top: 30px;
+            }
+
+            .btn-primary {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Update Product</h2>
+
+    <!-- Product Update Form -->
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_name">Product Name</label>
+            {{ form.name }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_price">Price</label>
+            {{ form.price }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_stock">Stock</label>
+            {{ form.stock }}
+        </div>
+
+        <div class="form-group">
+            <label for="id_status">Status</label>
+            {{ form.status }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Product</button>
+    </form>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

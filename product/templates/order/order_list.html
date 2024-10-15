@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+            color: #333;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            color: #007bff;
+            margin-bottom: 40px;
+        }
+
+        /* Create New Order Button */
+        .create-order-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .create-order-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Order List Styling */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        ul li {
+            background-color: #fff;
+            margin-bottom: 15px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: box-shadow 0.3s ease;
+        }
+
+        ul li:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Order Details Links */
+        .order-link {
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .order-link:hover {
+            color: #007bff;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .actions a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .actions a.edit {
+            background-color: #ffc107;
+        }
+
+        .actions a.delete {
+            background-color: #dc3545;
+        }
+
+        .actions a:hover {
+            opacity: 0.85;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            ul li {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px;
+            }
+
+            .order-link {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .actions a {
+                flex-grow: 1;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .actions a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .create-order-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Order List</h1>
+
+    <!-- Create New Order Button -->
+   
+
+    <!-- Order List -->
+    <ul>
+        <a href="{% url 'order_create' %}" class="create-order-btn">Create New Order</a>
+        {% for order in orders %}
+        <li>
+            <a href="{% url 'order_details' order.pk %}" class="order-link">
+                {{ order.product.name }} (Quantity: {{ order.quantity }})
+            </a>
+            <div class="actions">
+                <a href="{% url 'order_update' order.pk %}" class="edit">Edit</a>
+                <a href="{% url 'order_delete' order.pk %}" class="delete">Delete</a>
+            </div>
+        </li>
+        {% endfor %}
+        <a href="{% url 'product_list' %}">Back to Product List</a>
+    </ul>
+
+</body>
+</html>
